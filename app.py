@@ -1,5 +1,4 @@
 import json
-import os
 from pathlib import Path
 
 FILE_TODO = Path('todo.json')
@@ -8,7 +7,7 @@ tasks_list = []
 
 
 def load_tasks():
-    if os.path.exists(FILE_TODO):
+    if FILE_TODO.exists():
         with open(FILE_TODO, "r") as tf:
             try:
                 tasks_list.extend(json.load(tf))
