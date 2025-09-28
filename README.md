@@ -1,6 +1,6 @@
-# To-Do List App (CLI)
+# Task Manager App (CLI)
 
-A simple terminal-based To-Do List application built using Object-Oriented Programming (OOP) in Python. This app allows you to add, view, delete, and update tasks, with persistent storage using a JSON file.
+A simple terminal-based Task Manager application built using Object-Oriented Programming (OOP) in Python. This app allows you to add, view, delete, and update tasks, with persistent storage using a JSON file.
 
 ## Features
 
@@ -9,16 +9,16 @@ A simple terminal-based To-Do List application built using Object-Oriented Progr
 - Delete tasks
 - Toggle task completion status
 - Automatic ID reassignment after deletion
-- Tasks are stored in a JSON file (todo.json)
-- Fully object-oriented design using Task and Todolist classes
+- Tasks are stored in a JSON file (tasks.json)
+- Fully object-oriented design using Task and TaskManager classes
 
 ## Installation
 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/To-Do-List
-cd To-Do-List
+git clone https://github.com/your-username/Task-Manager
+cd Task-Manager
 ```
 
 2. Make sure you have Python 3 installed.
@@ -33,7 +33,7 @@ python app.py
 
 Follow the menu prompts:
 
----To Do List Menu---
+---Task Manager Menu---
 
 1. Show Tasks
 2. Add Tasks
@@ -44,10 +44,10 @@ Follow the menu prompts:
 ## Project Structure
 
 ```bash
-To-Do-List/
+Task-Manager/
 │
-├── app.py        # Main application code (Task and Todolist classes)
-├── todo.json     # JSON file storing tasks (created automatically)
+├── app.py        # Main application code (Task and TaskManager classes)
+├── tasks.json     # JSON file storing tasks (created automatically)
 └── README.md     # Project documentation
 ```
 
@@ -64,7 +64,7 @@ Methods:
 - to_dict() — convert to dictionary for JSON
 - from_dict() — create Task object from dictionary
 
-### Todolist
+### TaskManager
 Manages a list of tasks:
 - load_tasks() — load tasks from JSON file
 - save_tasks() — save tasks to JSON file

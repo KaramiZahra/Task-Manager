@@ -22,7 +22,7 @@ class Task:
         return cls(data['id'], data['name'], data['status'])
 
 
-class Todolist:
+class TaskManager:
     def __init__(self, file_path, tasks=None):
         self.file_path = Path(file_path)
         self.tasks = tasks if tasks is not None else []
@@ -99,7 +99,7 @@ class Todolist:
 
     def menu(self):
         while True:
-            print("\n---To Do List Menu---\n")
+            print("\n---Task Manager Menu---\n")
             print("1.Show Tasks")
             print("2.Add Tasks")
             print("3.Remove Tasks")
@@ -123,6 +123,7 @@ class Todolist:
                 print("Enter a valid number.")
 
 
-todo_list = Todolist("todo.json")
-todo_list.load_tasks()
-todo_list.menu()
+if __name__ == "__main__":
+    task_manager = TaskManager("tasks.json")
+    task_manager.load_tasks()
+    task_manager.menu()
