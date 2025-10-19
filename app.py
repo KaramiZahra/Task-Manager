@@ -11,6 +11,7 @@ db = SQLAlchemy(app)
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(255), nullable=False)
+    status = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
         return f"Task {self.id}"
@@ -55,6 +56,17 @@ def edit(id: int):
             return f"Operation failed: {e}"
     else:
         return render_template("edit.html", task=edit_task)
+
+
+@app.route("/change/<int:id>")
+def change(id: int):
+    change_task = Task.query.get_or_404(id)
+    change_task.status = not change_task.status
+    try:
+        db.session.commit()
+        return redirect("/")
+    except Exception as e:
+        return f"Operation failed: {e}"
 
 
 if __name__ == "__main__":

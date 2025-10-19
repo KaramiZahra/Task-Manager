@@ -7,14 +7,17 @@
         {% else %}
         <table>
             <tr>
-                <th>ID</th>
                 <th>Content</th>
+                <th>Status</th>
                 <th>Actions</th>
             </tr>
             {% for task in tasks %}
             <tr>
-                <td>{{task.id}}</td>
                 <td>{{task.content}}</td>
+                <td>
+                    {{"✓" if task.status else "✗"}}
+                    <a href="/change/{{task.id}}">Change</a>
+                </td>
                 <td>
                     <a href="/delete/{{task.id}}">Delete</a> | <a href="/edit/{{task.id}}">Edit</a>
                 </td>
