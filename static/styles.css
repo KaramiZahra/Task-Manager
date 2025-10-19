@@ -2,5 +2,69 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: palevioletred;
+  background-color: #ecd5bc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.content {
+  width: 500px;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 30px;
+}
+table,
+th,
+td {
+  background-color: #e9b63b;
+  border: 2px solid #758a93;
+  text-align: center;
+}
+th,
+td {
+  padding: 10px;
+}
+a {
+  text-decoration: none;
+  color: black;
+  border: 1px solid black;
+  padding: 0.5px 4px;
+  border-radius: 2px;
+}
+a:hover {
+  background-color: #758a93;
+  color: #f5f5f5;
+  transition: all ease;
+}
+form {
+  background-color: #c66e52;
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+}
+input[type="submit"] {
+  background-color: #ecd5bc;
+  border: 1px solid black;
+  padding: 4px 7px;
+  border-radius: 2px;
+}
+input[type="submit"]:hover {
+  background-color: #758a93;
+  color: #f5f5f5;
+  transition: all ease;
+}
+input[type="text"] {
+  width: 60%;
+  padding: 4px;
+  border-radius: 0;
+  border: none;
+}
+input[type="text"]:focus {
+  outline: 2px solid #758a93;
 }
