@@ -2,5 +2,29 @@
 
 
 {% block body %}
-
+<div class="tasks">
+    {% if not tasks %} <h2>There are no tasks!</h2>
+        {% else %}
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Content</th>
+                <th>Actions</th>
+            </tr>
+            {% for task in tasks %}
+            <tr>
+                <td>{{task.id}}</td>
+                <td>{{task.content}}</td>
+                <td>
+                    <a href="#">Delete</a> | <a href="#">Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+        <form action="/" method="post">
+            <input type="text" name="tasks" id="tasks" placeholder="Enter your new task">
+            <input type="submit" value="Add Task">
+        </form>
+</div>
 {% endblock %}
