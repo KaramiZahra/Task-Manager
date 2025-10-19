@@ -19,7 +19,7 @@ class Task(db.Model):
 @app.route("/", methods=["POST", "GET"])
 def index():
     if request.method == "POST":
-        current_task = request.form["tasks"]
+        current_task = request.form["content"]
         new_task = Task(content=current_task)
         try:
             db.session.add(new_task)
@@ -30,6 +30,31 @@ def index():
     else:
         tasks = Task.query.all()
         return render_template("index.html", tasks=tasks)
+
+
+@app.route("/delete/<int:id>")
+def delete(id: int):
+    delete_task = Task.query.get_or_404(id)
+    try:
+        db.session.delete(delete_task)
+        db.session.commit()
+        return redirect("/")
+    except Exception as e:
+        return f"Operation failed: {e}"
+
+
+@app.route("/edit/<int:id>", methods=["POST", "GET"])
+def edit(id: int):
+    edit_task = Task.query.get_or_404(id)
+    if request.method == "POST":
+        edit_task.content = request.form["content"]
+        try:
+            db.session.commit()
+            return redirect("/")
+        except Exception as e:
+            return f"Operation failed: {e}"
+    else:
+        return render_template("edit.html", task=edit_task)
 
 
 if __name__ == "__main__":
