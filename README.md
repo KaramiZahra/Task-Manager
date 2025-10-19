@@ -1,73 +1,93 @@
-# Task Manager App (CLI)
+# Task Manager (Flask)
 
-A simple terminal-based Task Manager application built using Object-Oriented Programming (OOP) in Python. This app allows you to add, view, delete, and update tasks, with persistent storage using a JSON file.
+A simple **web-based Task Manager** built with **Flask** and **SQLAlchemy**.
+This app allows you to **add**, **view**, **edit**, **delete**, and **toggle task completion** with data stored in a **SQLite database**.
 
 ## Features
 
 - Add new tasks
-- View all tasks with status (completed or not)
+- View all tasks in a clean web interface
+- Edit existing tasks
 - Delete tasks
-- Toggle task completion status
-- Automatic ID reassignment after deletion
-- Tasks are stored in a JSON file (tasks.json)
-- Fully object-oriented design using Task and TaskManager classes
+- Toggle completion status (done / not done)
+- Persistent storage using **SQLite + SQLAlchemy**
+- Clean MVC-like structure using Flask routes and templates
 
 ## Installation
 
-1. Clone the repository:
+1. **Clone the repository**
 
-```bash
-git clone https://github.com/your-username/Task-Manager
-cd Task-Manager
-```
+   ```bash
+   git clone https://github.com/KaramiZahra/Task-Manager
+   cd Task-Manager
+   ```
 
-2. Make sure you have Python 3 installed.
+2. **Create a virtual environment**
+
+   ```bash
+   python -m venv env
+   source env/bin/activate   # macOS/Linux
+   env\Scripts\activate      # Windows
+   ```
+
+3. **Install dependencies**
+
+   ```bash
+   pip3 install flask flask-sqlalchemy
+   ```
+
+4. **Run the app**
+
+   ```bash
+   python3 app.py
+   ```
+
+Then open your browser and go to **[http://127.0.0.1:5000/](http://127.0.0.1:5000/)** 
 
 ## Usage
 
-Run the game:
-
-```bash
-python app.py
-```
-
-Follow the menu prompts:
-
----Task Manager Menu---
-
-1. Show Tasks
-2. Add Tasks
-3. Remove Tasks
-4. Change Tasks
-5. Exit and Save
+- Type a new task in the input box and click **Add Task**.
+- View all your tasks in a table.
+- Click **Edit**, **Delete**, or **Change Status** to update each task.
+- Completed tasks toggle between ✔️ and ✗.
 
 ## Project Structure
 
-```bash
+```
 Task-Manager/
 │
-├── app.py        # Main application code (Task and TaskManager classes)
-├── tasks.json     # JSON file storing tasks (created automatically)
-└── README.md     # Project documentation
+├── app.py                # Main Flask application
+├── instance/
+│   ├── project.db        # SQLite database (auto-created)
+├── templates/
+│   ├── base.html
+│   ├── index.html        # Home page (list + add tasks)
+│   └── edit.html         # Edit task form
+├── static/
+│   └── styles.css        # CSS styling
+├── requirements.txt      # Packages
+└── README.md             # Documentation
 ```
 
-## Classes Overview
+---
 
-### Task
-Represents a single task with:
-- id — unique identifier
-- name — task description
-- status — completion status
-Methods:
-- toggle_status() — change task completion
-- display() — returns a formatted string for display
-- to_dict() — convert to dictionary for JSON
-- from_dict() — create Task object from dictionary
+## Model Overview
 
-### TaskManager
-Manages a list of tasks:
-- load_tasks() — load tasks from JSON file
-- save_tasks() — save tasks to JSON file
-- add_task(), delete_task(), change_status() — task operations
-- show_tasks() — display tasks
-- menu() — terminal menu for user interaction
+### `Task`
+
+Represents a single task in the database.
+
+**Attributes:**
+
+- `id`: unique task ID
+- `content`: text description of the task
+- `status`: boolean (completed or not)
+
+## Routes Overview
+
+| Route          | Method     | Description                     |
+| -------------- | ---------- | ------------------------------- |
+| `/`            | GET / POST | Show all tasks or add a new one |
+| `/delete/<id>` | GET        | Delete a task                   |
+| `/edit/<id>`   | GET / POST | Edit an existing task           |
+| `/change/<id>` | GET        | Toggle completion status        |
